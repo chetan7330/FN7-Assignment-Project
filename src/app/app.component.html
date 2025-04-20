@@ -1,0 +1,113 @@
+<div class="p-6 max-w-xl mx-auto bg-cyan-500 rounded-xl space-y-6 shadow-lg">
+  <h1 class="text-3xl font-bold text-center text-white">User Form</h1>
+
+  <form *ngIf="!showFeedback" [formGroup]="mainForm" (ngSubmit)="submitMain()">
+    <!-- Name -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="mainForm.get('name')!.hasError('required')">Name is required</mat-error>
+      <mat-error *ngIf="mainForm.get('name')!.hasError('minlength')">Min 2 characters</mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+      <mat-error *ngIf="mainForm.get('email')!.invalid">Valid email required</mat-error>
+    </mat-form-field>
+
+    <!-- Age -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" formControlName="age" />
+      <mat-error *ngIf="mainForm.get('age')!.invalid">0–120 only</mat-error>
+    </mat-form-field>
+
+    <!-- Gender as Radio Buttons -->
+    <div class="mb-4">
+      <label class="block font-medium mb-1">Gender</label>
+      <mat-radio-group formControlName="gender" class="flex gap-4">
+        <mat-radio-button *ngFor="let g of genderOptions" [value]="g">
+          {{ g }}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="mainForm.get('gender')!.hasError('required')" class="text-red-600 text-sm">
+        Please select a gender
+      </div>
+    </div>
+
+    <!-- Phone Number -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber" />
+      <mat-error *ngIf="mainForm.get('phoneNumber')!.invalid">10 digits required</mat-error>
+    </mat-form-field>
+
+    <!-- Country & State -->
+    <div class="grid grid-cols-2 gap-4">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="country">
+          <mat-option *ngFor="let c of countries" [value]="c">{{ c }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="mainForm.get('country')!.invalid">Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>State</mat-label>
+        <mat-select formControlName="state">
+          <mat-option
+            *ngFor="let s of statesMap[ mainForm.get('country')!.value ] || []"
+            [value]="s"
+          >
+            {{ s }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="mainForm.get('state')!.invalid">Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Address -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" />
+      <mat-error *ngIf="mainForm.get('address')!.invalid">Required</mat-error>
+    </mat-form-field>
+
+    <!-- Subscribe -->
+    <mat-checkbox formControlName="subscribe" class="mb-4">
+      Agree to terms and conditions!
+    </mat-checkbox>
+    <div *ngIf="mainForm.get('subscribe')!.hasError('required')" class="text-red-600 text-sm mb-4">
+      You must agree
+    </div>
+
+    <button mat-raised-button color="primary" class="w-full" type="submit">
+      🚀 Submit
+    </button>
+  </form>
+
+  <form *ngIf="showFeedback" [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+    <h2 class="text-2xl font-semibold text-white">💬 Feedback</h2>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Experience Rating</mat-label>
+      <mat-select formControlName="rating">
+        <mat-option *ngFor="let r of ['Excellent','Good','Average','Poor']" [value]="r">
+          {{ r }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="feedbackForm.get('rating')!.invalid">Required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Any comments?</mat-label>
+      <textarea matInput formControlName="comments"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" class="w-full" type="submit">
+      ✅ Submit Feedback
+    </button>
+  </form>
+</div>
