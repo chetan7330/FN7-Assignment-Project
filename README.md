@@ -2,6 +2,23 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
 
+## Required Installations
+
+Install node modules
+```bash
+npm install
+```
+
+Install Angular Modules
+```bash
+npm install @angular/material @angular/cdk @angular/animations
+```
+
+Install TailwindCss
+```bash
+npm install @tailwindcss/postcss
+```
+
 ## Development server
 
 To start a local development server, run:
@@ -51,6 +68,10 @@ For end-to-end (e2e) testing, run:
 ```bash
 ng e2e
 ```
+
+**Output:**
+![Image](https://github.com/user-attachments/assets/23548ea1-8e28-48f7-bfae-662673183116)
+
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
