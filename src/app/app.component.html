@@ -10,13 +10,6 @@
       <mat-error *ngIf="mainForm.get('name')!.hasError('minlength')">Min 2 characters</mat-error>
     </mat-form-field>
 
-    <!-- Email -->
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email" />
-      <mat-error *ngIf="mainForm.get('email')!.invalid">Valid email required</mat-error>
-    </mat-form-field>
-
     <!-- Age -->
     <mat-form-field appearance="fill" class="w-full">
       <mat-label>Age</mat-label>
@@ -37,11 +30,26 @@
       </div>
     </div>
 
+    <!-- Email -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+      <mat-error *ngIf="mainForm.get('email')!.invalid">Valid email required</mat-error>
+    </mat-form-field>
+
     <!-- Phone Number -->
     <mat-form-field appearance="fill" class="w-full">
       <mat-label>Phone Number</mat-label>
       <input matInput formControlName="phoneNumber" />
       <mat-error *ngIf="mainForm.get('phoneNumber')!.invalid">10 digits required</mat-error>
+    </mat-form-field>
+
+
+    <!-- Address -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" />
+      <mat-error *ngIf="mainForm.get('address')!.invalid">Required</mat-error>
     </mat-form-field>
 
     <!-- Country & State -->
@@ -68,13 +76,6 @@
       </mat-form-field>
     </div>
 
-    <!-- Address -->
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Address</mat-label>
-      <input matInput formControlName="address" />
-      <mat-error *ngIf="mainForm.get('address')!.invalid">Required</mat-error>
-    </mat-form-field>
-
     <!-- Subscribe -->
     <mat-checkbox formControlName="subscribe" class="mb-4">
       Agree to terms and conditions!
@@ -84,7 +85,7 @@
     </div>
 
     <button mat-raised-button color="primary" class="w-full" type="submit">
-      🚀 Submit
+      Submit
     </button>
   </form>
 
@@ -107,7 +108,7 @@
     </mat-form-field>
 
     <button mat-raised-button color="accent" class="w-full" type="submit">
-      ✅ Submit Feedback
+      Submit Feedback
     </button>
   </form>
 </div>
